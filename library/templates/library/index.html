@@ -1,0 +1,765 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Главная</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="{% static 'icons/books.png' %}" type="images/png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=El+Messiri" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+body {
+     /* background-image: url('back.jpg');*/
+    background-color: #06131E;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: 'El Messiri', sans-serif;
+}
+h1,h2,h3,h4,h4,h5,h6{
+  font-family: 'El Messiri', sans-serif;
+}
+.w3-bar-block .w3-bar-item {padding:20px}
+h5{color: white;}
+h4{color:white; cursor: pointer;}
+.onas{font-size: 20px; color:white; font-family: 'El Messiri', sans-serif;}
+p{color:white; font-family: 'El Messiri', sans-serif;}
+nav{font-family: 'El Messiri', sans-serif}
+a.genre:hover{ 
+  background: #555;}
+#slider>img{
+  width: 500px;
+  height: 300px;
+  margin: 5px;
+}
+.maska{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    padding:20px;
+    background:black;
+    z-index:2;
+    opacity:0.4;
+    display: none;
+  }
+.modalka{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    top:130%;
+    left: 15%;
+    width: 70%;
+    height: auto; 
+    background: linear-gradient(0deg, rgba(255,0,0,1) -10px, rgba(35,53,83,0.7) 50%); 
+    z-index:3;
+    display: none;
+    padding: 15px;
+    font-family: 'El Messiri', sans-serif;
+  }
+  .maskaa{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    padding:20px;
+    background:black;
+    z-index:2;
+    opacity:0.4;
+    display: none;
+  }
+.modalkaa{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    top: 360%;
+    left: 30%;
+    width: 40%;
+    height: auto; 
+    background: linear-gradient(0deg, rgba(255,0,0,1) -10px, rgba(35,53,83,0.7) 50%); 
+    z-index:3;
+    display: none;
+    padding: 20px;
+    font-family: 'El Messiri', sans-serif;
+  }
+  #pic{
+    width: 500px;
+    height: 300px;
+  }
+  #img{
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .nazvanie{
+    color: white;
+  }
+
+  #download{
+    color: white;
+    margin-left: 100px;
+    background: linear-gradient(0deg, rgba(255,0,0,1) -10px, rgba(35,53,83,0.7) 50%); 
+  }
+
+  #text{
+    color: white;
+    background-color: rgba(35,53,83,0.5); 
+    
+  }
+
+  .img{
+    float: left;
+    width: 25%;
+    height: 35%;
+  }
+
+  .inform>p{
+    padding: 0 0 0 8cm;
+    color: white;
+
+  }
+  #text{
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+  }
+  .odin{cursor: pointer;}
+
+  .glavnyi>img{width: 50%;}
+   #sm{display: none;}
+
+  .book{display:none;}
+  #index{display: block}
+  a{cursor: pointer;}
+  .onas, .contact{ border-top: 1px solid white; border-bottom: 1px solid white; }
+  .glavnyi{display: block;}
+  footer{background: linear-gradient(0deg, rgba(35,53,83,0.3) 20px, rgba(255,0,0, 0.7) 80%); font-family: 'El Messiri', sans-serif;}
+
+   @media screen and (max-width: 480px;){
+    body{ background-color: grey;}
+    z-index: 3;
+    .onas>p{font-size:70px;}
+    .sms{margin-right: }
+    #sm{display: block;}
+    #lg{display: none;}
+
+  }
+</style>
+<script src="{% static 'library/jquery.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $('.maskaa').click(function(){
+      $('.modalkaa').hide();
+      $(this).hide();
+    });
+    $('.num').click(function(){
+      $('.maskaa').show();
+      $('.modalkaa').show();
+      $(this).show();
+      var picture=$(this).data('image');
+        $('#pic').attr('src', picture);
+    });
+
+    $('.maska').click(function(){   
+      $('.modalka').hide();
+      $(this).hide();
+      //alert('maska');
+      return false;
+    });
+
+    $('h4').click(function(){
+      $('.maska').show();
+      $('.modalka').show();
+      $(this).show();     
+      var nazv=$(this).data('nazv');
+      var avtor=$(this).data('avtor');
+      var city=$(this).data('city');
+      var year=$(this).data('year');
+      var janr=$(this).data('janr');
+      var lang=$(this).data('lang');
+      var vozrast=$(this).data('vozrast');
+      var img=$(this).data('img');
+      var text=$(this).data('text');
+      var emb=$(this).data('embed')
+        $('.nazvanie').html(nazv);
+        $('#avtor').html(avtor);
+        $('#city').html(city);
+        $('#year').html(year);
+        $('#janr').html(janr);
+        $('#lang').html(lang);
+        $('#vozrast').html(vozrast);
+        $('#img').attr('src', img);
+        $('#text').html(text);
+        $('embed').attr(embed);
+    });    
+    $('#download').click(function(){
+      var url = "embed.html";
+      $(location).attr('href',url);
+    });
+
+    $('#otkryt_lev').click(function(){
+      $('#mySidebar').css('display', 'block');
+    });
+
+    $('#zakryt').click(function(){
+      $('#mySidebar').css('display', 'none');
+    });
+
+    $('.detektiv').click(function(){
+      $('#detskaia').css('display', 'none');
+      $('#detektiv').css('display', 'block');
+      $('#psihology').css('display', 'none');
+      $('#triller').css('display', 'none');
+      $('#fantastic').css('display', 'none');
+      $('#index').css('display', 'none'); 
+    });
+
+    $('.detskaia').click(function(){
+      $('#detskaia').css('display', 'block');
+      $('#detektiv').css('display', 'none');
+      $('#psihology').css('display', 'none');
+      $('#triller').css('display', 'none');
+      $('#fantastic').css('display', 'none');
+      $('#index').css('display', 'none'); 
+    });
+    $('.psihology').click(function(){
+      $('#psihology').css('display', 'block');
+      $('#detskaia').css('display', 'none');
+      $('#detektiv').css('display', 'none');
+      $('#triller').css('display', 'none');
+      $('#fantastic').css('display', 'none');
+      $('#index').css('display', 'none'); 
+    });
+    $('.triller').click(function(){
+      $('#triller').css('display', 'block');
+      $('#detskaia').css('display', 'none');
+      $('#psihology').css('display', 'none');
+      $('#detektiv').css('display', 'none');
+      $('#fantastic').css('display', 'none');
+      $('#index').css('display', 'none'); 
+    });
+    $('.fantastic').click(function(){
+      $('#fantastic').css('display', 'block');
+      $('#detskaia').css('display', 'none');
+      $('#psihology').css('display', 'none');
+      $('#triller').css('display', 'none');
+      $('#detektiv').css('display', 'none');
+      $('#index').css('display', 'none');      
+    });
+
+    $('.odin').click(function(){
+      $('title').html('Главная');      
+    });
+
+  });
+</script>
+
+</head>
+<body >
+<!--modal-->
+  <div class="maska"><!--span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span--></div>
+  <div class="modalka w3-modal-content w3-animate-zoom">
+    <h4 class="nazvanie"></h4>
+    <div class="img"> <img src="" id="img"></div>
+    <div class="inform">
+        <p>Автор: <u id="avtor"></u></p>
+        <p>Страна: <u id="city"></u></p>
+        <p>Год: <u id="year"></u></p>
+        <p>Жанр: <u id="janr"></u></p>
+        <p>Перевод: <u id="lang"></u></p>
+        <p>Возрастные ограничения: <u id="vozrast"></u></p>
+    </div>
+      <button id="download">Просмотр</button>
+      <textarea id="text">  <!--embed src="begi.pdf" width="600" height="400" /--></textarea>
+  </div>
+<!--end modal-->
+
+<!--modal g-->
+  <div class="maskaa"><!--span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span--></div>
+  <div class="modalkaa w3-modal-content w3-animate-zoom">
+    <div class="img"> <img src="" id="pic"></div>
+    
+  </div>
+<!--end modal-->
+
+<!-- Sidebar (hidden by default) -->
+<nav class="catalog w3-sidebar w3-bar-block w3-card w3-top w3-large w3-animate-left"  
+  style=" font-size:10px;display:none;z-index:2;width:3%;min-width:200px" id="mySidebar">
+  <span href="javascript:void(0)" id="zakryt" class=" w3-button w3-display-topright w3-large">X</span>
+  <h3 class="w3-bar-item list-group-item disabled" style="color: black">Жанры</h3><hr style="color: black">
+  <a onclick="openLink(event, 'Fade')"  class="w3-bar-item w3-button detektiv genre">Детектив</a>
+  <a  class="w3-bar-item w3-button detskaia genre">Детская</a>
+  <a  class="w3-bar-item w3-button psihology genre">Психология</a>
+  <a  class="w3-bar-item w3-button triller genre">Триллер</a>
+  <a  class="w3-bar-item w3-button fantastic genre">Фантастика</a>
+</nav>
+
+<!-- Top menu -->
+<div class="w3-top" style="height: auto; font-family: 'El Messiri', sans-serif;">
+  <div class="w3-firebrick w3-xlarge" style="max-width:100%; background: linear-gradient(0deg, rgba(255,0,0,1) -10px, rgba(35,53,83,0.7) 50%); margin:auto; color:white; height: 70px">
+    <div id="otkryt_lev" class="w3-button w3-padding-16 w3-left">☰</div>
+    <div class="w3-center w3-padding-16"><h2 class="odin">Книжный  город</h2></div>
+  </div>
+</div>
+<!--end top menu-->
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding " style="max-width:100%;margin-top:100px">
+  <!--Slider-->
+<div id="slider" class="w3-content w3-display-container">
+  <img class="mySlides" src="{% static 'img/slider/1.jpg' %}" style="width:100%">
+  <img class="mySlides" src="{% static 'img/slider/2.jpg' %}" style="width:100%">
+  <img class="mySlides" src="{% static 'img/slider/3.jpg' %}" style="width:100%">
+
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+</div><br><br>
+  <!--End slider-->
+
+  <!--About-->
+  <div class="w3-padding-16 w3-center onas">
+    <p>Мы – команда единомышленников, уверенных в том, что просвещение – залог успеха и благосостояния каждого человека, свободы и процветания государства. 
+      Наша деятельность направлена на то, чтобы предоставить нашим клиентам возможность выбора книг по всем тематическим направлениям, а также создать все условия для того, чтобы книга стала для каждого человека доступным инструментом для достижения успеха, признания и благосостояния.
+      История компании
+        14 декабря 2007 года был открыт первый магазин в рамках проекта «Книжный город», расположенный в городе Бишкек .  Презентацию, посвященную открытию магазина, посетили видные деятели науки и искусства Кыргызстана, директора издательств Кыргызстана, журналисты. Украшением церемонии стали ведущие артисты театра Государственного Русского Драматического Театра им Ч.Айтматова,  которые декламировали стихи в образах великих поэтов.
+            Магазин «Книжный Город»
+        «Книжный город» является одним из самых крупных в Центральной Азии книжных магазинов, в котором представлено около 80 000 наименований книг. Большое внимание в ассортименте уделяется детской литературе и развивающим играм для детей. Гордостью магазина является отдел подарочных и эксклюзивных изданий – уникальных книг, выпущенных ограниченным тиражом. В ассортименте имеются также и сопутствующие товары, в числе которых аудиокниги, пазлы, открытки,  закладки, периодические и картографические издания, сувениры.</p>
+  </div>
+  <!--End About-->
+  <!--Book-->
+  <div class="glavnyi" style="font-family: 'Lobster', cursive;">
+
+
+    <!--index-->
+    <div class="w3-row-padding w3-padding-16 w3-center" id="index">
+      <!--himik-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Химик" data-img="{% static 'img/detektiv/himik.jpg' %}" data-avtor="Стефани Майер" data-city="США" data-year="2016" data-janr="Детектив" data-lang="на русский" data-vozrast="16+" data-embed="" data-text="Ее кодовое имя «Химик». Она работала на правительственную службу США такой степени секретности, что у нее не было названия, и хранила секреты, способные нарушить мировой баланс. А потом кто-то из ее работодателей решил, что эта женщина знает слишком много…
+        У нее не осталось ничего: ни настоящего имени, ни близких, ни жизни, ни будущего. Ничего, кроме желания выжить любой ценой, – пусть даже для этого придется в последний раз выполнить задание бывшего начальства.
+        Решив играть по собственным правилам, она готовится к самой жестокой битве в своей жизни, но встречает человека, который делает ее более уязвимой… Чтобы избежать гибели, ей предстоит использовать все свои знания и вспомнить, почему ее считали лучшей из лучших в этой непростой профессии…">Химик</h4>
+        <img src="{% static 'img/detektiv/himik.jpg' %}" alt="himik" style="width:60%">
+      </div>
+      <!--End himik-->
+
+      <!--proishojdenie-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Происхождение" data-img="{% static 'img/fantastic/proishojdenie.jpg' %}" data-avtor="Дэн Браун" data-city="США" data-year="2017" data-janr="Фантастика" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Роберт Лэнгдон прибывает в музей Гуггенхайма в Бильбао по приглашению друга и бывшего студента Эдмонда Кирша. Миллиардер и компьютерный гуру, он известен своими удивительными открытиями и предсказаниями. И этим вечером Кирш собирается «перевернуть все современные научные представления о мире»...
+        Теперь их путь лежит в Барселону, где Кирш оставил для своего учителя закодированный ключ к тайне, способной потрясти сами основы представлений человечества о себе. Тайне, которая была веками похоронена во тьме забвения. Тайне, которой, возможно, лучше бы никогда не увидеть света, – по крайней мере, так считают те, кто преследует Лэнгдона и Видаль и готов на все, чтобы помешать им раскрыть истину.">Происхождение</h4>
+        <img src="{% static 'img/fantastic/proishojdenie.jpg' %}" alt="proishojdenie" style="width:60%">
+        <p></p>
+      </div>
+      <!--End proishojdenie-->
+
+      <!--Go Dipper go-->
+      <div class="dipper w3-quarter">
+        <h4 data-nazv="Беги Диппер Беги" data-img="{% static 'img/detskii/dipper.jpg' %}" data-avtor="Гравити Фолз" data-city="США" data-year="2017" data-janr="Детский" data-lang="на русский" data-vozrast="12+" data-embed="begi.pdf"
+        data-text="В разбитые окна дома всё хлещут косые дожди. Мне вывеска странно знакома, шепчу я себе: «Подожди!»
+        Пришёл я сюда не случайно — тут в детстве когда-то бывал; разгадывал здешние тайны, спускался в секретный подвал.
+        Уютным, родным когда-то был этот заброшенный дом, и мы — ещё дети, ребята — бывали частенько в нём.
+        Владел этим местом в то время любимый наш старый дед, и памяти тяжкое бремя тащил уже много лет.
+        Он помнил, что тут однажды пропал его старший брат, и каждый день жизни, — каждый! — хотел отмотать всё назад.">Беги Диппер Беги</h4>
+        <img src="{% static 'img/detskii/dipper.jpg' %}" alt="begi dipper" style="width:60%">
+      </div>
+      <!--End Go Dipper go-->
+
+      <!--Set' i butterfly-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Сеть и бабочка" data-img="{% static 'img/psihology/set.jpg' %}" data-avtor="Кабейн Фокс" data-city="США" data-year="2017" data-janr="Психология, Саморазвитие" data-lang="на русский" data-vozrast="12+" data-embed="begi.pdf" data-text="Многие считают, что революционные идеи приходят либо к гениям, либо к везунчикам. Однако сделать открытие способен каждый. Мыслительные прорывы непредсказуемы, как полет бабочки, но их можно поймать, если...">Сеть и бабочка</h4>
+        <img src="{% static 'img/psihology/set.jpg' %}" alt="set' babochka" style="width:60%">
+        <p></p>
+      </div>
+      <!--End Set' i butterfly-->
+
+      <!--Vokrug sveta za 80 dnei-->
+      <div class="dipper w3-quarter">
+        <h4 data-nazv="Вокруг света за 80 дней" data-img="{% static 'img/detskii/vokrug.jpg' %}" data-avtor="Л. Марайя" data-city="США" data-year="1873" data-janr="Детский" data-lang="на русский" data-vozrast="0+" data-embed="begi.pdf"
+        data-text="«Вокруг света в восемьдесят дней» – один из лучших романов Жюля Верна. Увлекательная история Филеаса Фогга, его неунывающего слуги Паспарту и их потрясающего воображение кругосветного путешествия, полного опасных приключений, знакома нам с детства – по многочисленным фильмам и мультфильмам. Но насколько они отличаются от произведения самого Жюля Верна?
+        Читателям предстоит понять это, открыв для себя великолепную книгу, полную живого и тонкого юмора.">Вокруг света за 80 дней</h4>
+        <img src="{% static 'img/detskii/vokrug.jpg' %}" alt="vokrug sveta za 80 dnei" style="width:60%">
+      </div>
+      <!--End Vokrug sveta za 80 dnei-->
+
+      <!--Naemnik-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Наемник" data-img="{% static 'img/triller/naemnik.jpg' %}" data-avtor="Винс Флинн" data-city="США" data-year="2017" data-janr="Детектив" data-lang="на русский" data-vozrast="18+" data-embed="begi.pdf" data-text="Долгое ожидание, пока солнце все же сядет. Как же эти двое этого не любят. Ждать. Кровь пульсирует в жилах, все бушует, хочется убить, выместить всю ярость, всю злобу, но рано. Только под покровом ночи их могут не заметить, да и то не факт. Слишком опасное задание, убить лорда прямо на въезде в город, именно поэтому Арт и запретил идти на него. Вот только для Корака это не было помехой - платили кругленькую сумму, а он не ведал слово 'страх', чем много раз чуть не поплатился головой. Все, что его спасет - какая-то сверхъестественная удача. Судьба любит его. Она любит тех, кто играет по ее правилам. Или же ему просто каждый раз везет.">Наемник</h4>
+        <img src="{% static 'img/triller/naemnik.jpg' %}" alt="naemnik" style="width:60%">
+      </div>
+      <!--End Naemnik-->
+
+      <!--dumai medlenno-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Думай медленно… Решай быстро" data-img="{% static 'img/detektiv/himik.jpg' %}"
+        data-avtor="Даниэль Канеман" data-city="США" data-year="2011" data-janr="Психология, Саморазвитие" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Наши действия и поступки определены нашими мыслями. Но всегда ли мы контролируем наше мышление? Нобелевский лауреат Даниэль Канеман объясняет, почему мы подчас совершаем нерациональные поступки и как мы принимаем неверные решения. У нас имеется две системы мышления. «Медленное» мышление включается, когда мы решаем задачу или выбираем товар в магазине. Обычно нам кажется, что мы уверенно контролируем эти процессы, но не будем забывать, что позади нашего сознания в фоновом режиме постоянно работает «быстрое» мышление – автоматическое, мгновенное и неосознаваемое…">Думай медленно</h4>
+        <img src="{% static 'img/detektiv/himik.jpg' %}" alt="set' babochka" style="width:60%">
+        <p></p>
+      </div>
+      <!--End dumai medlenno-->
+
+      <!--Fantastic-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Фантастические твари и где они обитают" data-img="{% static 'img/fantastic/tvari.jpg' %}" data-avtor="Дж. К. Роулинг" data-city="США" data-year="2016" data-janr="Психология, Саморазвитие" data-lang="на русский" data-vozrast="0+" data-embed="begi.pdf" data-text="Книга «Фантастические твари и где они обитают. Оригинальный сценарий» создана по мотивам оригинальной книги Ньюта Саламандера из Библиотеки Хогвартса и стала блестящим дебютом Дж.К. Роулинг (автора мирового бестселлера – семитомной истории о Гарри Поттере) в качестве сценариста. Это грандиозная приключенческая история о дружбе, волшебстве и хаосе с вереницей незабываемых персонажей. Эта история доставит массу удовольствия и любителям кино и почитателям литератры, будь то горячий поклонник волшебного мира или тот, кто только знакомится с магией и волшебством.">Фантастические твари</h4>
+        <img src="{% static 'img/fantastic/tvari.jpg' %}" alt="tvari" style="width:60%">
+        <p></p>
+      </div>
+      <!--End tvari-->
+    </div>
+    <!--End index-->
+    
+    <!-- detektiv -->
+    <div class="w3-row-padding w3-padding-16 w3-center book vybran" id="detektiv">
+      <!--inferno-->
+      <div class="w3-quarter">
+        <h4 data-nazv="{% static 'img/detektiv/inferno.jpg' %}" data-img="{% static 'img/detektiv/inferno.jpg' %}" data-avtor="Дэн Браун" data-city="США" data-year="2013" data-janr="Детектив" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Профессор Лэнгдон очнулся в больнице. Последние два дня пропали из его памяти, что дало старт странным событиям…
+        За Лэнгдоном ведется охота. Но почему? Теперь ему предстоит перемещаться из города в город, чтобы спасти свою жизнь, узнать, что же произошло за эти два дня, и разгадать загадку, зашифрованную в «Божественной комедии» Данте, чтобы спасти человечество от надвигающейся беды по имени «Инферно».
+        «Инферно» – четвертая по счету книга о приключениях профессора Роберта Лэнгдона – специалиста по Средневековью. Дэн Браун порадовал читателей еще одним романом с полюбившимся героем из «Кода да Винчи». Вас ждут интересные загадки, динамичный сюжет и любопытные исторические и культурологические вставки.">Инферно</h4>
+        <img src="{% static 'img/detektiv/inferno.jpg' %}" alt="inferno" style="width:60%">
+        <p></p>
+      </div>
+      <!--End inferno-->
+
+      <!--himik-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Химик" data-img="{% static 'img/detektiv/himik.jpg' %}" data-avtor="Стефани Майер" data-city="США" data-year="2016" data-janr="Детектив" data-lang="на русский" data-vozrast="16+" data-embed="" data-text="Ее кодовое имя «Химик». Она работала на правительственную службу США такой степени секретности, что у нее не было названия, и хранила секреты, способные нарушить мировой баланс. А потом кто-то из ее работодателей решил, что эта женщина знает слишком много…
+        У нее не осталось ничего: ни настоящего имени, ни близких, ни жизни, ни будущего. Ничего, кроме желания выжить любой ценой, – пусть даже для этого придется в последний раз выполнить задание бывшего начальства.
+        Решив играть по собственным правилам, она готовится к самой жестокой битве в своей жизни, но встречает человека, который делает ее более уязвимой… Чтобы избежать гибели, ей предстоит использовать все свои знания и вспомнить, почему ее считали лучшей из лучших в этой непростой профессии…">Химик</h4>
+        <img src="{% static 'img/detektiv/himik.jpg' %}" alt="himik" style="width:60%">
+      </div>
+      <!--End himik-->
+
+      <!--Oko razuma-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Око разума" data-img="{% static 'img/detektiv/oko.jpg' %}" data-avtor="Дуглас Ричардс" data-city="США" data-year="2013" data-janr="Детектив, Потеря памяти, Телепатия, Триллер, Фантастика" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Смрад был настолько ужасен, что, казалось, атаковал каждую клеточку его организма – омерзительная вонь гнилья и протухшей пищи, богомерзкого потустороннего месива схлестывающихся между собой десятков запахов, каждый из которых отвратителен сам по себе, но в сочетании они поистине тошнотворны, самым невероятным образом.
+        Осознав, что тонет в этом тлетворном облаке, он запаниковал, но почему-то никак не мог вдохнуть, словно позабыл, как это делается; будто его мозговые связи, запускающие непроизвольную дыхательную реакцию, были начисто перерезаны садовым секатором и больше не вели к груди или легким. Он не сомневался, что жить ему остаются считаные секунды.
+        И вдруг на малую часть его рассудка снизошло озарение, и он понял, что вовсе не тонет, а пребывает в самой гуще яркого реалистичного кошмара, и его дыхательный рефлекс отказал, потому что он находится в мире грез, а его физическое тело спит и парализовано. Он вложил всю свою волю в мощный рывок, чтобы сбросить сокрушительно тяжкую пелену забытья, и мгновение спустя все его сознание вырвалось на поверхность, как ныряльщик, слишком долго пробывший в сумрачных и холодных океанских глубинах и ускользнувший от смерти как раз вовремя.
+        " >Око разума</h4>
+        <img src="{% static 'img/detektiv/oko.jpg' %}" alt="oko razuma" style="width:60%">
+      </div>
+      <!--Nasledie-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Наследие" data-img="{% static 'img/detektiv/nasledie.jpg' %}" data-avtor="Бентли Литтл" data-city="США" data-year="2009" data-janr="Детектив" data-lang="на русский" data-vozrast="18+" data-embed="begi.pdf" data-text="Джозефа Ная уложили в госпиталь в тяжелом состоянии; недолго осталось ему жить на этой земле. Кроме того, рассудок старика помутился, и практически все время он проводит либо в забытьи, либо в жутких приступах безумия. Но однажды, в один из редких периодов просветления, Джозеф взглянул на своего сына Стива и произнес: «Я ее убил». И это были последние внятные слова, которые он сказал. Изумленный и испуганный Стив решил во что бы то ни стало выяснить, кого, когда и за что убил его отец. Хотя бы потому, что он почему-то уверен: это окажется крайне важно для него самого…">Наследие</h4>
+        <img src="{% static 'img/detektiv/nasledie.jpg' %}" alt="nasledie" style="width:60%">
+      </div>
+    </div>
+    <!--End detektiv-->
+    
+    <!-- detskaia -->
+    <div class="w3-row-padding w3-padding-16 w3-center book" id="detskaia">
+      <!--Go Dipper go-->
+      <div class="dipper w3-quarter">
+        <h4 data-nazv="Беги Диппер Беги" data-img="{% static 'img/detskii/dipper.jpg' %}" data-avtor="Гравити Фолз" data-city="США" data-year="2017" data-janr="Детский" data-lang="на русский" data-vozrast="12+" data-embed="begi.pdf"
+        data-text="В разбитые окна дома всё хлещут косые дожди. Мне вывеска странно знакома, шепчу я себе: «Подожди!»
+        Пришёл я сюда не случайно — тут в детстве когда-то бывал; разгадывал здешние тайны, спускался в секретный подвал.
+        Уютным, родным когда-то был этот заброшенный дом, и мы — ещё дети, ребята — бывали частенько в нём.
+        Владел этим местом в то время любимый наш старый дед, и памяти тяжкое бремя тащил уже много лет.
+        Он помнил, что тут однажды пропал его старший брат, и каждый день жизни, — каждый! — хотел отмотать всё назад.">Беги Диппер Беги</h4>
+        <img src="{% static 'img/detskii/dipper.jpg' %}" alt="begi dipper" style="width:60%">
+      </div>
+      <!--End Go Dipper go-->
+
+      <!--Tania Grotter-->
+      <div class="dipper w3-quarter">
+        <h4 data-nazv="Таня Гроттер и Исчезающий Этаж" data-img="{% static 'img/detskii/taniia.jpg' %}" data-avtor="Дмитрий Емец" data-city="США" data-year="2002" data-janr="Детский" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf"
+        data-text="Тане Гроттер не повезло. На то время, пока Сарданапал, Медузия Горгонова и другие преподаватели вновь отстраивают разрушенную школу магии Тибидохс, учеников отправляют по домам. Вот и Таня вынуждена вернуться в Москву в семью Дурневых. Да еще захватить с собой в нагрузку целый чемодан склочных привидений. Ну да ничего! За время обучения в Тибидохсе Таня кое-что успела усвоить, так что дяде Герману и тете Нинели придется несладко… И вот наконец наступает пора вернуться в Тибидохс. Он отстроен заново и даже лучше прежнего, но вот Исчезающий Этаж… С ним творится что-то невероятное. Никто из тех, кто отважился проникнуть туда, не вер-нулся назад. Или все же вернулся?..">Таня Гроттер и Исчезающий Этаж</h4>
+        <img src="{% static 'img/detskii/taniia.jpg' %}" alt="Tania Grotter" style="width:60%">
+      </div>
+      <!--Tania Grotter-->
+
+      <!--Vokrug sveta za 80 dnei-->
+      <div class="dipper w3-quarter">
+        <h4 data-nazv="Вокруг света за 80 дней" data-img="{% static 'img/detskii/vokrug.jpg' %}" data-avtor="Л. Марайя" data-city="США" data-year="1873" data-janr="Детский" data-lang="на русский" data-vozrast="0+" data-embed="begi.pdf"
+        data-text="«Вокруг света в восемьдесят дней» – один из лучших романов Жюля Верна. Увлекательная история Филеаса Фогга, его неунывающего слуги Паспарту и их потрясающего воображение кругосветного путешествия, полного опасных приключений, знакома нам с детства – по многочисленным фильмам и мультфильмам. Но насколько они отличаются от произведения самого Жюля Верна?
+        Читателям предстоит понять это, открыв для себя великолепную книгу, полную живого и тонкого юмора.">Вокруг света за 80 дней</h4>
+        <img src="{% static 'img/detskii/vokrug.jpg' %}" alt="vokrug sveta za 80 dnei" style="width:60%">
+      </div>
+      <!--End Vokrug sveta za 80 dnei-->
+
+      <!--malenkii princ-->
+      <div class="dipper w3-quarter">
+        <h4 data-nazv="Маленький принц" data-img="{% static 'img/detskii/malenkii.jpg' %}" data-avtor="Антуан де Сент-Экзюпери" data-city="США" data-year="1943" data-janr="Детский" data-lang="на русский" data-vozrast="0+" data-embed="begi.pdf"
+        data-text="Самое знаменитое произведение Антуана де Сент-Экзюпери с авторскими рисунками. Мудрая и «человечная» сказка-притча, в которой просто и проникновенно говорится о самом важном: о дружбе и любви, о долге и верности, о красоте и нетерпимости к злу.
+        «Все мы родом из детства», – напоминает великий француз и знакомит нас с самым загадочным и трогательным героем мировой литературы.">Маленький принц</h4>
+        <img src="{% static 'img/detskii/malenkii.jpg' %}" alt="vokrug sveta za 80 dnei" style="width:60%">
+      </div>
+      <!--End malenkii princ-->
+    </div>
+    <!--End detskaia-->
+
+    <!--psihology-->
+    <div class="w3-row-padding w3-padding-16 w3-center book" id="psihology">
+      <!--Set' i butterfly-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Сеть и бабочка" data-img="{% static 'img/psihology/set.jpg' %}" data-avtor="Кабейн Фокс" data-city="США" data-year="2017" data-janr="Психология, Саморазвитие" data-lang="на русский" data-vozrast="12+" data-embed="begi.pdf" data-text="Многие считают, что революционные идеи приходят либо к гениям, либо к везунчикам. Однако сделать открытие способен каждый. Мыслительные прорывы непредсказуемы, как полет бабочки, но их можно поймать, если...">Сеть и бабочка</h4>
+        <img src="{% static 'img/psihology/set.jpg' %}" alt="set' babochka" style="width:60%">
+        <p></p>
+      </div>
+      <!--End Set' i butterfly-->
+
+      <!--dumai medlenno-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Думай медленно… Решай быстро" data-img="{% static 'img/psihology/dumaiu.jpg' %}"
+        data-avtor="Даниэль Канеман" data-city="США" data-year="2011" data-janr="Психология, Саморазвитие" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Наши действия и поступки определены нашими мыслями. Но всегда ли мы контролируем наше мышление? Нобелевский лауреат Даниэль Канеман объясняет, почему мы подчас совершаем нерациональные поступки и как мы принимаем неверные решения. У нас имеется две системы мышления. «Медленное» мышление включается, когда мы решаем задачу или выбираем товар в магазине. Обычно нам кажется, что мы уверенно контролируем эти процессы, но не будем забывать, что позади нашего сознания в фоновом режиме постоянно работает «быстрое» мышление – автоматическое, мгновенное и неосознаваемое…">Думай медленно… Решай быстро</h4>
+        <img src="{% static 'img/psihology/dumaiu.jpg' %}" alt="set' babochka" style="width:60%">
+        <p></p>
+      </div>
+      <!--End dumai medlenno-->
+
+      <!--Huge-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Хюгге" data-img="{% static 'img/psihology/hugo.jpg' %}" data-avtor="Мари Турелл Содерберг" data-city="США" data-year="2016" data-janr="Психология" data-lang="на русский" data-vozrast="12+" data-embed="begi.pdf" data-text="Хюгге - это умение видеть волшебство в обыкновенном. Для датчан это главная жизненная философия. Чтобы написать эту книгу, Мари Содерберг отправилась в путешествие по всей Дании, чтобы узнать у простых датчан, что для них значит хюгге и как они создают уют...">Хюгге</h4>
+        <img src="{% static 'img/psihology/hugo.jpg' %}" alt="hugo" style="width:60%">
+        <p></p>
+      </div>
+      <!--End hugo-->
+
+      <!--tehnika-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Джедайские техники. Как воспитать свою обезьяну, опустошить инбокс и сберечь мыслетопливо" data-img="{% static 'img/psihology/dj.jpg' %}" data-avtor="Максим Дорофеев" data-city="США" data-year="2017" data-janr="Психология" data-lang="на русский" data-vozrast="12+" data-embed="begi.pdf" data-text="Почему, даже зная, как надо правильно работать, человек на практике делает все так, как привык… то есть плохо? Максим Дорофеев простым и доступным языком объясняет, почему так происходит. Прочитав его книгу, вы узнаете, как устроено ваше мышление и память; почему вы неэкономно тратите ресурсы своего мозга; как их сохранить, как правильно концентрироваться, формулировать задачи и восстанавливаться для продуктивной работы. Практичные, проверенные и обоснованные приемы помогут вам сделать список задач реально работающим и гарантированно добиваться поставленных целей.">Джедайские техники</h4>
+        <img src="{% static 'img/psihology/dj.jpg' %}" alt="Джедайские техники" style="width:60%">
+        <p></p>
+      </div>
+      <!--End tehnika-->
+    </div>
+    <!--End psihology-->
+
+     <!--triller-->
+    <div class="w3-row-padding w3-padding-16 w3-center book" id="triller">
+      <!--Devushka v tumane-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Девушка в тумане" data-img="{% static 'img/triller/devushka.jpg' %}" data-avtor="Донато Карризи" data-city="США" data-year="2017" data-janr="Триллеры" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Затерянный в Альпах сонный городок, рождественский вечер, туман. От дома, где сияют огни елки и лежат подарки, до празднично украшенной местной церкви всего триста метров, но в церкви юная Анна Лу так и не появилась… Вездесущие журналисты, фоторепортеры и телевизионщики осаждают городок. Каждый из них жаждет первым сообщить сенсационные новости о ходе расследования. Этим мастерски пользуется спецагент Фогель, привлекая внимание к собственной персоне. Но что на самом деле случилось с тихой рыжеволосой девушкой и при чем здесь бродячий кот?.." >Девушка в тумане</h4>
+        <img src="{% static 'img/triller/devushka.jpg' %}" alt="Devushka v tumane" style="width:60%">
+        <p></p>
+      </div>
+      <!--End Devushka v tumane-->
+
+      <!--Snegovik-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Снеговик" data-img="{% static 'img/triller/snegovik.jpg' %}" data-avtor="Ю Несбё" data-city="США" data-year="2007" data-janr="Детектив, Триллеры" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Новая история о работе норвежского Шерлока Холмса – детектива Харри Холле. На этот раз ему придется столкнуться с первым в истории Осло серийным убийцей. «Снеговик», как прозвали маньяка, охотится..." >Снеговик</h4>
+        <img src="{% static 'img/triller/snegovik.jpg' %}" alt="snegovik" style="width:60%">
+        <p></p>
+      </div>
+      <!--End Snegovik-->
+
+      <!--Naemnik-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Наемник" data-img="{% static 'img/triller/naemnik.jpg' %}" data-avtor="Винс Флинн" data-city="США" data-year="2017" data-janr="Детектив" data-lang="на русский" data-vozrast="18+" data-embed="begi.pdf" data-text="Долгое ожидание, пока солнце все же сядет. Как же эти двое этого не любят. Ждать. Кровь пульсирует в жилах, все бушует, хочется убить, выместить всю ярость, всю злобу, но рано. Только под покровом ночи их могут не заметить, да и то не факт. Слишком опасное задание, убить лорда прямо на въезде в город, именно поэтому Арт и запретил идти на него. Вот только для Корака это не было помехой - платили кругленькую сумму, а он не ведал слово 'страх', чем много раз чуть не поплатился головой. Все, что его спасет - какая-то сверхъестественная удача. Судьба любит его. Она любит тех, кто играет по ее правилам. Или же ему просто каждый раз везет.">Наемник</h4>
+        <img src="{% static 'img/triller/naemnik.jpg' %}" alt="naemnik" style="width:60%">
+      </div>
+      <!--End Naemnik-->
+
+      <!--ohotnok na krolikov-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Охотник на кроликов" data-img="{% static 'img/triller/ohotnik.jpg' %}" data-avtor="Мари Турелл Содерберг" data-city="США" data-year="2016" data-janr="Триллер" data-lang="на русский" data-vozrast="18+" data-embed="begi.pdf" data-text="Для расследования преступлений Охотника на кроликов Йону Линну освобождают из тюрьмы, где тот отбывает срок, полученный в ходе предыдущего дела о сталкере. На этот раз череда жестоких убийств, начавшаяся расправой с министром иностранных дел страны, уходит корнями в прошлое героев, вовлеченных в эту леденящую душу историю. Все началось с далекого эпизода в престижной школе, где они учились: мальчики из самых привилегированных семей создали тайный клуб для избранных под названием Кроличья нора, и однажды там произошло то, что перевернуло их жизни…">Охотник на кроликов</h4>
+        <img src="{% static 'img/triller/ohotnik.jpg' %}" alt="hugo" style="width:60%">
+        <p></p>
+      </div>
+      <!--End ohotnik na krolikov-->
+    </div>
+    <!--End triller-->
+
+    <!--fantastic-->
+    <div class="w3-row-padding w3-padding-16 w3-center book" id="fantastic">
+      <!--proishojdenie-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Происхождение" data-img="{% static 'img/fantastic/proishojdenie.jpg' %}" data-avtor="Дэн Браун" data-city="США" data-year="2017" data-janr="Фантастика" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Роберт Лэнгдон прибывает в музей Гуггенхайма в Бильбао по приглашению друга и бывшего студента Эдмонда Кирша. Миллиардер и компьютерный гуру, он известен своими удивительными открытиями и предсказаниями. И этим вечером Кирш собирается «перевернуть все современные научные представления о мире»...
+        Теперь их путь лежит в Барселону, где Кирш оставил для своего учителя закодированный ключ к тайне, способной потрясти сами основы представлений человечества о себе. Тайне, которая была веками похоронена во тьме забвения. Тайне, которой, возможно, лучше бы никогда не увидеть света, – по крайней мере, так считают те, кто преследует Лэнгдона и Видаль и готов на все, чтобы помешать им раскрыть истину.">Происхождение</h4>
+        <img src="{% static 'img/fantastic/proishojdenie.jpg' %}" alt="proishojdenie" style="width:60%">
+        <p></p>
+      </div>
+      <!--End proishojdenie-->
+
+
+      <!--Fantastic-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Фантастические твари и где они обитают" data-img="{% static 'img/fantastic/tvari.jpg' %}" data-avtor="Дж. К. Роулинг" data-city="США" data-year="2016" data-janr="Фантастика" data-lang="на русский" data-vozrast="0+" data-embed="begi.pdf" data-text="Книга «Фантастические твари и где они обитают. Оригинальный сценарий» создана по мотивам оригинальной книги Ньюта Саламандера из Библиотеки Хогвартса и стала блестящим дебютом Дж.К. Роулинг (автора мирового бестселлера – семитомной истории о Гарри Поттере) в качестве сценариста. Это грандиозная приключенческая история о дружбе, волшебстве и хаосе с вереницей незабываемых персонажей. Эта история доставит массу удовольствия и любителям кино и почитателям литератры, будь то горячий поклонник волшебного мира или тот, кто только знакомится с магией и волшебством.">Фантастические твари и где они обитают</h4>
+        <img src="{% static 'img/fantastic/tvari.jpg' %}" alt="tvari" style="width:60%">
+        <p></p>
+      </div>
+      <!--End tvari-->
+
+      <!--kajdomu svoe-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Каждому своё" data-img="{% static 'img/fantastic/kajdomu.jpg' %}" data-avtor="Сергей Тармашев" data-city="США" data-year="2017" data-janr="Фантастика" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="«29 августа 2111 года. Месторождения нефти и газа опустошены. Единственный глубоководный шельф, где еще осталась нефть, служит причиной постоянных политических споров. Не сохранилось данных, что послужило причиной вооруженного конфликта наиболее влиятельных государств, но точно известно, что цивилизация Древних уничтожила сама себя в огне всепланетной ядерной войны. Начался день Великой Катастрофы, положившей начало отсчету современной системе летоисчисления…»">Каждому своё</h4>
+        <img src="{% static 'img/fantastic/kajdomu.jpg' %}" alt="kajdomu svoe" style="width:60%">
+        <p></p>
+      </div>
+      <!--End kajdomu svoe-->
+
+      <!--Doctor-->
+      <div class="w3-quarter">
+        <h4 data-nazv="Доктор Стрэндж" data-img="{% static 'img/fantastic/doctor.jpg' %}" data-avtor="Девин Грейсон" data-city="США" data-year="2016" data-janr="Фантастика" data-lang="на русский" data-vozrast="16+" data-embed="begi.pdf" data-text="Привычный мир рушится. На фоне падения мировой экономики растет уровень преступности. Верховному Чародею Земли Доктору Стивену Стрэнджу не впервой сражаться со злыми колдунами и полчищами демонов, неустанно защищая нашу планету от захватчиков из других измерений, но сможет ли он противостоять опасным сновидениям, толкающим простых людей на преступления? Вступив в вынужденный альянс со своим заклятым врагом Кошмаром, Доктор Стрэндж погружается в пучину жутких снов, иллюзий и алчных желаний целого мира. Чтобы спасти Измерение Снов, ему придется забыть про героизм и признать свои заблуждения. Но справится ли Верховный Чародей с собственными кошмарами?">Доктор Стрэндж</h4>
+        <img src="{% static 'img/fantastic/doctor.jpg' %}" alt="Doctor" style="width:60%">
+        <p></p>
+      </div>
+      <!--End Doctor-->
+    </div>
+    <!--End fantastic-->
+  </div>
+  <!--End book-->
+
+
+  <!--gl-->
+  <div style="color:red; background-image: url('{% static 'img/back.jpg' %}'); background-repeat: no-repeat; background-size: 100%; background-position: center; width: 100%; height: 500px; margin-top:100px">
+    <center>
+      <h1>Книги, подобно оружию, обладают силой, чтобы спасти или разрушить.</h1>
+    </center>
+  </div>
+  <!--end_gl-->
+
+  <!--Library-->
+  <div class="w3-row  " style="height: 500px;  box-sizing: border-box;">
+    <div class="w3-col s6 w3-red 2" style="cursor: pointer;">
+        <div class="w3-row 3">
+            <div class="w3-col num 4" data-image="{% static 'img/bookshop/1.jpg' %}"; style="background-image: url('{% static 'img/bookshop/1.jpg' %}'); border:2px solid white; background-position: center;  height: 240px; width: 240px">
+            </div>
+
+            <div class="w3-col 5" style=" height: 240px; width: 240px">
+              <div class="w3-row 5.1">
+                  <div class="w3-col num 5.1" data-image="{% static 'img/bookshop/7.jpg' %}"; style="background-image: url('{% static 'img/bookshop/7.jpg' %}'); border:2px solid white; background-position: center; background-size: cover; height: 120px; width: 120px"></div>
+                  <div class="w3-col num 5.1" data-image="{% static 'img/bookshop/3.jpg' %}"; style="background-image: url('{% static 'img/bookshop/3.jpg' %}'); border:2px solid white; background-repeat: center;
+                  background-size: cover; height: 120px; width: 120px"></div>
+              </div>
+
+              <div class="w3-row num" data-image="{% static 'img/bookshop/2.jpg' %}"; style="background-image: url('{% static 'img/bookshop/2.jpg' %}'); border:2px solid white; background-position: center; background-size: cover; height: 120px; width: 240px"></div>
+            </div>
+
+            <div class="w3-col 5" style=" height: 240px; width: 178px">
+              <div id="foto" class="w3-row num" data-image="{% static 'img/bookshop/4.jpg' %}"; style="background-image: url('{% static 'img/bookshop/4.jpg' %}'); border:2px solid white; background-position: center; background-size: cover; height: 120px; width: 178px"></div>
+
+              <div class="w3-row num 5.1" data-image="{% static 'img/bookshop/8.jpeg' %}"; style="background-image: url('{% static 'img/bookshop/8.jpeg' %}'); border:2px solid white; background-repeat: center;
+                  background-size: cover; height: 120px; width: 178px"></div>
+            </div>
+        </div>
+        
+
+        <div class="w3-row 3">
+            <div class="w3-col 5" style=" height: 240px; width: 240px">
+              <div class="w3-row num" data-image="{% static 'img/bookshop/14.jpg' %}"; style="background-image: url('{% static 'img/bookshop/14.jpg' %}'); border:2px solid white; background-position: center; background-size: cover; height: 120px; width: 240px"></div>
+
+              <div class="w3-row 5.1">
+                  <div class="w3-col 5.1 num" data-image="{% static 'img/bookshop/9.jpeg' %}"; style="background-image: url('{% static 'img/bookshop/9.jpeg' %}'); border:2px solid white; background-repeat: center;
+                  background-size: cover; height: 120px; width: 240px"></div>
+              </div>
+            </div>
+
+            <div class="w3-col 4 num" data-image="{% static 'img/bookshop/6.jpg' %}"; style="background-image: url('{% static 'img/bookshop/6.jpg' %}'); border:2px solid white; background-position: center;  height: 240px; width: 240px">
+            </div>            
+
+
+            <div class="w3-col 5 " style=" height: 240px; width: 178px">
+              <div id="foto" class="w3-row num" data-image="{% static 'img/bookshop/13.jpg' %}"; style="background-image: url('{% static 'img/bookshop/13.jpg' %}'); border:2px solid white; background-position: center; background-size: cover; height: 120px; width: 178px"></div>
+
+              <div class="w3-row 5.1 num" data-image="{% static 'img/bookshop/10.jpeg' %}"; style="background-image: url('{% static 'img/bookshop/10.jpeg' %}'); border:2px solid white; background-repeat: center;
+                  background-size: cover; height: 120px; width: 178px"></div>
+            </div>
+        </div>
+    </div>
+
+        
+   
+
+    <div class="w3-col s6 w3-white w3-center" style="height: 480px; border:2px solid white; ">
+      <h4 style="color: black"><b>О Магазине</b></h4>
+      <h5 style="color: black"> Не исключено, что из любителей чтении книг выйдут те, которые предпочетают читать не из электронных книжек или из сайтов, а с самой подленной книги, держа в руках. Так имеются многие читатели, любящие классичесский метод познавания литературных и других жанров шедевров. Если вы один из таких читателей, то вы можете придти в наш магазин и в наличии преобрести любую книгу, которое имеется на официальном сайте магазина. О нашем магазине говорилось и ранее, наш адресс и контакты указаны внизу...
+        <br>
+        <br>
+        <br>
+        Адрес: г. Бишкек, ул.Московская,192.<br>
+        Контакты: +996 779 013100, +996 779 548597<br>
+        Эл.почта: knijnyi.gorod@gmail.com<br>
+          </h5>
+    </div>
+  </div>  <br><br>
+
+  <!--end photo library-->
+
+   <!-- Contact -->
+  <div class="w3-row-padding w3-padding-16 w3-center contact">
+    <!--Map lg-->
+    <div id="lg" class="w3-left">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11702.304140987118!2d74.60419660233161!3d42.83956870182744!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xea43bfa802477f7e!2sKyrgyz+State+University+Of+Construction+And+Architecture.!5e0!3m2!1sen!2skg!4v1513751483438" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <!--Map sm-->
+    <div id="sm" class="w3-left">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11702.304140987118!2d74.60419660233161!3d42.83956870182744!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xea43bfa802477f7e!2sKyrgyz+State+University+Of+Construction+And+Architecture.!5e0!3m2!1sen!2skg!4v1513751483438" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <!-- End Map -->
+     <div class="w3-right sms" style="margin-right: 15%;">
+        <h4>Отправьте письмо</h4>
+        <p><input class="w3-input" type="text" name="name" placeholder="Ваше Имя"></p>
+        <p><input class="w3-input" type="text" name="e-mal" placeholder="Ваш E-mail"></p>
+        <input class="w3-input" type="text" name="phone" placeholder="Ваш телефонный номер">
+        <p><input class="w3-input" type="text" name="message" placeholder="Ваше сообщение"></p>
+        <p><button class="w3-btn">Отправить</button></p>
+      </div>
+  </div>
+  <!--End Contact-->
+<!-- End page content -->
+</div>
+
+ <!-- Footer -->
+  <footer class="w3-row-padding w3-padding-32">
+    <div class="w3-third">
+      <h5 class="dva">Контакты</h5>
+      <p>г. Бишкек, ул. Малдыбаева</p>
+      <p>Телефоны: +996 709548 597</p>
+      <p>Техподдержка: </p>
+      <p class="tri">О нас</p>
+    </div>
+  
+      <div class="w3-third">
+      <h5>свяжется с нами</h5>
+      <ul class="w3-ul">
+        <li class="w3-padding-10">
+         <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,gplus,twitter,linkedin,viber,whatsapp,skype,telegram"></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third w3-serif">
+      <ul class="w3-ul">
+        <h5>способы оплаты</h5>
+        <li class="w3-padding-16">
+          <img src="{% static 'icons/WebMoney (1).png' %}" class="w3-left w3-margin-right" style="width:65px">
+          <img src="{% static 'icons/mobilnik-1024x405.png' %}" class="w3-left w3-margin-right" style="width:65px">
+          <img src="{% static 'icons/logo-qiwi-koshelek.png' %}" class="w3-left w3-margin-right" style="width: 65px">
+          <img src="{% static 'icons/Paypal-logo-1.png' %}" class="w3-left w3-margin-right" style="width:65px"><br><br>
+          <img src="{% static 'icons/MasterCard_Logo.svg.png' %}" class="w3-left w3-margin-right" style="width:80px">
+          <img src="{% static 'icons/visa-512.png' %}" class="w3-left w3-margin-right" style="width:80px">
+          <img src="{% static 'icons/Client-Logo-UnionPay.png' %}" class="w3-left w3-margin-right" style="width:80px">
+        </li> 
+      </ul>
+    </div><br><br>
+    <p>© 2016  Kyrgyzstan All rights reserved</p>
+  </footer>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+<script src="//yastatic.net/share2/share.js"></script>
+</body>
+</html>
